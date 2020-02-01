@@ -29,13 +29,60 @@
         this.load.image('player', 'assets/player.png');
         this.load.image('wall', 'assets/wall.png');
     }
+    
+    //Create objects for our player and walls
+    var player;
+    var walls;
+    var cursors;
+    var playerSpeed = 160;
 
     function create ()
     {
         this.add.image(400, 320, 'bg');
-        this.add.image(400, 400, 'wall');
-        this.add.image(400, 200, 'player');
+        //this.add.image(400, 400, 'wall');
+        //this.add.image(400, 200, 'player');
+        
+        //Create walls physics object
+        walls = this.physics.add.staticGroup();
+        walls.create(400,400, 'wall');
+        
+        player = this.physics.add.sprite(400,200,'player');
+        player.setCollideWorldBounds(true);
+        
+        this.physics.addCollider(player, walls);
+        
+        cursors = this.input.keyboard.createCursorKeys();       
+        
+        
     }
+        
+    function update ()
+    {
+        if(cursors.left.isDown){
+            player.setVelocityX(-playerSpeed);            
+        }
+        
+        else if(cursors.right.isDown){
+            player.setVelocityX(playerSpeed);           
+        }
+        
+        else if(cursors.left.isUp && cursors.right.isUp){
+            player.setVelocityX(0);            
+        }
+        
+        if(cursors.up.isDown){
+            player.setVelocityY(playerSpeed);            
+        }
+        
+        else if(cursors.down.isDown){
+            player.setVelocityY(-playerSpeed)           
+        }
+        
+        else if(cursors.up.isUp && cursors.down.isUp){
+            player.setVelocityY(0);            
+        }
+    }
+        
     </script>
 
 </body>
