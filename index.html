@@ -36,6 +36,7 @@
         this.load.image('bg', 'assets/bg.png');
         this.load.image('player', 'assets/player.png');
         this.load.image('wall', 'assets/wall.png');
+        this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
     }
         
     var player;
@@ -50,9 +51,15 @@
             //Create objects for our player and walls
 
         
-        this.add.image(400, 320, 'bg');
-        //this.add.image(400, 400, 'wall');
-        //this.add.image(400, 200, 'player');
+        this.add.image(400, 320, 'bg');        
+		this.add.image(400, 400, 'wall');
+        this.add.image(400, 200, 'player');		
+        happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
+        happyBackgroundMusic.play();
+		
+		
+		
+
         
         //Create walls physics object
         walls = this.physics.add.staticGroup();
