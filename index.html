@@ -10,6 +10,11 @@
         type: Phaser.AUTO,
         width: 25 * 32,
         height: 20 * 32,
+        physics: {
+            default: 'arcade';
+            
+        }
+        
         //scene: scenes;
         scene: {
             preload: preload,
@@ -30,22 +35,26 @@
         this.load.image('wall', 'assets/wall.png');
     }
     
-    //Create objects for our player and walls
-    var player;
-    var walls;
-    var cursors;
-    var playerSpeed = 160;
+
 
     function create ()
     {
+        
+            //Create objects for our player and walls
+        var player;
+        var walls;
+        var cursors;
+        var playerSpeed = 160;
+        
         this.add.image(400, 320, 'bg');
         //this.add.image(400, 400, 'wall');
-        this.add.image(400, 200, 'player');
+        //this.add.image(400, 200, 'player');
         
         //Create walls physics object
-        walls = this.physics.add.staticGroup();
-        walls.create(400,400, 'wall');
+        platforms = this.physics.add.staticGroup();
+        walls.create(400, 400, 'wall');
         
+        //Player Object
         player = this.physics.add.sprite(400, 200, 'player');
         player.setCollideWorldBounds(true);
         
